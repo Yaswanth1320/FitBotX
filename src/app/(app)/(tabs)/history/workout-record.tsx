@@ -124,7 +124,7 @@ const Workoutrecord = () => {
     <SafeAreaView className="flex-1 bg-gray-200">
       <ScrollView
         className="flex-1"
-        contentContainerStyle={{ marginBottom: 100 }}
+        contentContainerStyle={{ paddingBottom: 120 }}
       >
         <View className="bg-white/60 p-6 border-b border-gray-300">
           <View className="flex-row items-center justify-between mb-2">

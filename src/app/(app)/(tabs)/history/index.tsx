@@ -118,7 +118,7 @@ const History = () => {
       </View>
       <ScrollView
         className="flex-1"
-        contentContainerStyle={{ padding: 24 }}
+        contentContainerStyle={{ padding: 24, paddingBottom: 120 }}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }

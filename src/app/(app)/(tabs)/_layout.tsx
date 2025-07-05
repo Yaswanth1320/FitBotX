@@ -1,7 +1,15 @@
 import { Tabs, usePathname } from "expo-router";
 import { BlurView } from "expo-blur";
-import { View, Platform, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Platform,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Image,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useUser } from "@clerk/clerk-expo";
 
 const TabBarBackground = () => {
   const pathname = usePathname();
@@ -34,8 +42,26 @@ const TabBarBackground = () => {
 };
 
 const TabIcon = ({ route, color, size }) => {
+  if (route.name === "profile") {
+    const { user } = useUser();
+    const imageUrl = user?.imageUrl || user?.externalAccounts?.[0]?.imageUrl;
+    if (imageUrl) {
+      return (
+        <Image
+          source={{ uri: imageUrl }}
+          style={{ width: 22, height: 22, borderRadius: 11, marginRight: 6 }}
+        />
+      );
+    }
+    return (
+      <MaterialCommunityIcons
+        name="face-man-shimmer"
+        size={size}
+        color={color}
+      />
+    );
+  }
   let iconComponent;
-
   switch (route.name) {
     case "index":
       iconComponent = (
@@ -57,15 +83,6 @@ const TabIcon = ({ route, color, size }) => {
         <MaterialCommunityIcons name="history" size={size} color={color} />
       );
       break;
-    case "profile":
-      iconComponent = (
-        <MaterialCommunityIcons
-          name="face-man-shimmer"
-          size={size}
-          color={color}
-        />
-      );
-      break;
     default:
       iconComponent = (
         <MaterialCommunityIcons name="help-circle" size={size} color={color} />
@@ -78,6 +95,7 @@ const TabLayout = () => {
   return (
     // Changed the background color here to make the glass effect more visible
     <View style={{ flex: 1, backgroundColor: "#F0F2F5" }}>
+      <StatusBar backgroundColor="#1F2937" barStyle="dark-content" />
       <Tabs
         screenOptions={({ route }) => ({
           headerShown: false,

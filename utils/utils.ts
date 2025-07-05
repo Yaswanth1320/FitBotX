@@ -81,3 +81,10 @@ export const formatTime = (dateInput: string | Date) => {
     hour12: true,
   });
 };
+
+export const formatJoinDate = (date: Date) => {
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+};

@@ -44,7 +44,7 @@ const exercises = () => {
       setRefreshing(false);
     }
   };
-  
+
   const onRefresh = () => {
     setRefreshing(true);
     fetchExercises();
@@ -82,7 +82,7 @@ const exercises = () => {
         data={filteredExercises}
         keyExtractor={(item) => item._id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ padding: 24, gap: 10 }}
+        contentContainerStyle={{ padding: 24, gap: 10, paddingBottom: 120 }}
         renderItem={({ item }) => (
           <ExcerciseCard
             item={item}
@@ -93,7 +93,7 @@ const exercises = () => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            colors={["#000000"]} 
+            colors={["#000000"]}
             tintColor="#000000"
             title="Pull to refresh exercises"
             titleColor="#000000"
