@@ -46,3 +46,9 @@ export const getWorkoutRecordQuery =
     }
   }
 }`);
+
+export const findExerciseQuery =
+  defineQuery(`*[_type == "exercise" && name == $name][0] {
+  _id,
+  name
+}`);

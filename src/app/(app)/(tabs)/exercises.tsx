@@ -44,6 +44,7 @@ const exercises = () => {
       setRefreshing(false);
     }
   };
+  
   const onRefresh = () => {
     setRefreshing(true);
     fetchExercises();

@@ -14,7 +14,9 @@ const TabBarBackground = () => {
       style={{
         flex: 1,
         backgroundColor:
-          Platform.OS === "android" ? "rgba(255,255,255,0.9)" : "transparent",
+          Platform.OS === "android"
+            ? "rgba(255,255,255,0.9)"
+            : "rgba(255,255,255,0.05)",
         overflow: "hidden",
         borderRadius: 40,
       }}
@@ -89,7 +91,7 @@ const TabLayout = () => {
           tabBarIcon: (props) => <TabIcon {...props} route={route} />,
           tabBarStyle: {
             position: "absolute",
-            bottom: 30,
+            bottom: 20,
             left: 25,
             right: 25,
             height: 55,

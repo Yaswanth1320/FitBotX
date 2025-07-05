@@ -76,14 +76,15 @@ const History = () => {
 
   const getExerciseNames = (workout: Workout) => {
     if (!workout.sets) return [];
-    // Only include names if present (for dereferenced exercises)
-    return workout.sets
+    const names = workout.sets
       .map((set) =>
         typeof set.exercise === "object" && "name" in set.exercise
           ? set.exercise.name
           : ""
       )
       .filter(Boolean);
+    // Return only unique names
+    return [...new Set(names)];
   };
 
   if (loading) {
@@ -96,7 +97,9 @@ const History = () => {
         </View>
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="#000000" />
-          <Text className="text-gray-600 mt-4 font-kanit">Loading your workouts...</Text>
+          <Text className="text-gray-600 mt-4 font-kanit">
+            Loading your workouts...
+          </Text>
         </View>
       </SafeAreaView>
     );
@@ -168,7 +171,7 @@ const History = () => {
                   <View className="flex-row items-center">
                     <View className="bg-gray-100 rounded-lg px-3 py-2 mr-3">
                       <Text className="text-sm font-medium text-gray-700 font-kanit">
-                        {getUniqueExercisesCount(workout)} exercises
+                        {getExerciseNames(workout).length} exercises
                       </Text>
                     </View>
                     <View className="bg-gray-100 rounded-lg px-3 py-2">
